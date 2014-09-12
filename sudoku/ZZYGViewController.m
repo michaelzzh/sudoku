@@ -1,16 +1,16 @@
 //
 //  ZZYGViewController.m
-//  sudoku
+//  Sudoku
 //
-//  Created by Zehao Zhang on 14-9-11.
-//  Copyright (c) 2014年 Zehao Zhang Yaxi Gao. All rights reserved.
+//  Created by Yaxi Gao on 9/12/14.
+//  Copyright (c) 2014 Zehao Zhang Yaxi Gao. All rights reserved.
 //
 
 #import "ZZYGViewController.h"
 #import "ZZYGGrid.h"
 
-int initialGrid[9][9]={
-    {7,0,0,4,2,0,0,0,9},
+int initialGrid[9][9] = {
+    {8,0,0,4,2,0,0,0,9},
     {0,0,9,5,0,0,0,0,4},
     {0,2,0,6,9,0,5,0,0},
     {6,5,0,0,0,0,4,3,0},
@@ -21,10 +21,12 @@ int initialGrid[9][9]={
     {8,0,0,3,0,2,7,4,0}
 };
 
-@interface ZZYGViewController ()
-@property UIView* gridView;
-@property UIButton* button;
+UIButton* myButtons[9][9];
 
+@interface ZZYGViewController () {
+    UIView* _gridView;
+    UIButton* _button;
+}
 
 @end
 
@@ -33,30 +35,75 @@ int initialGrid[9][9]={
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    // create grid frame
     CGRect frame = self.view.frame;
-    CGFloat x = CGRectGetWidth(frame)* .1;
-    CGFloat y = CGRectGetHeight(frame)* .1;
-    CGFloat size = MIN(CGRectGetWidth(frame),CGRectGetHeight(frame))* .80;
+    CGFloat x = CGRectGetWidth(frame)*.1;
+    CGFloat y = CGRectGetHeight(frame)*.1;
+    CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame))*.80;
     
     CGRect gridFrame = CGRectMake(x, y, size, size);
     
+    // create grid view
     _gridView = [[ZZYGGrid alloc] initWithFrame:gridFrame];
     _gridView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_gridView];
     
-    CGFloat buttonSize = size/5.0;
-    CGRect buttonFrame = CGRectMake(0, 0, buttonSize, buttonSize);
-    _button = [[UIButton alloc]initWithFrame:buttonFrame];
-    _button.backgroundColor = [UIColor whiteColor];
-    [_button setTitle:[NSString stringWithFormat:@"%d", initialGrid[0][0]] forState:UIControlStateNormal];
-    [_gridView addSubview:_button];
+    CGFloat buttonSize = size / 10.0;
     
-    [_button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self addButtons:buttonSize];
     
+}
 
+- (void)addButtons:(CGFloat) buttonSize
+{
+    // create button
+    
+    int row = 14;
+    int column;
+    int tag = 0;
+    
+    for (int i = 0; i < 9; i++) {
+        column = 14;
+        for (int j = 0; j < 9; j++) {
+            
+            CGRect buttonFrame = CGRectMake(row, column, buttonSize, buttonSize);
+            myButtons[i][j] = [[UIButton alloc] initWithFrame:buttonFrame];
+            myButtons[i][j].backgroundColor = [UIColor whiteColor];
+            myButtons[i][j].tag = tag;
+            tag++;
+            if (initialGrid[i][j]){
+                [myButtons[i][j] setTitle:[NSString stringWithFormat: @"%d", initialGrid[i][j]] forState:UIControlStateNormal];
+            }
+            [myButtons[i][j] setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            [_gridView addSubview:myButtons[i][j]];
+            
+            // create target for button
+            [myButtons[i][j] addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            
+            column += (buttonSize + 3);
+            if ((j + 1) % 3 == 0) {
+                column += 5;
+            }
+        }
+        row += (buttonSize + 3);
+        if ((i + 1) % 3 == 0) {
+            row += 5;
+        }
+    }
+    
+    
+}
 
-	// Do any additional setup after loading the view, typically from a nib.
+-(int)getButtonRow:(UIButton*)button{
+    return button.tag%9;
+}
+
+-(int)getButtonCol:(UIButton*)button{
+    return button.tag/9;
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,10 +112,11 @@ int initialGrid[9][9]={
     // Dispose of any resources that can be recreated.
 }
 
-- (void)buttonPressed:(id)sender
+- (void)buttonPressed:(UIButton*)sender
 {
-    NSLog(@"You've pressed the button");
+    NSLog([@"You Pressed the button!" stringByAppendingString: sender.currentTitle]);
+    NSLog([NSString stringWithFormat:@"Button row:%d" ,[self getButtonRow:sender]]);
+    NSLog([NSString stringWithFormat:@"Button col:%d" ,[self getButtonCol:sender]]);
 }
-
 
 @end
