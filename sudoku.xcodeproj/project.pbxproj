@@ -21,6 +21,7 @@
 		5B4BF1E419C25C9000B22E5B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B4BF1C619C25C9000B22E5B /* UIKit.framework */; };
 		5B4BF1EC19C25C9000B22E5B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B4BF1EA19C25C9000B22E5B /* InfoPlist.strings */; };
 		5B4BF1EE19C25C9000B22E5B /* sudokuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4BF1ED19C25C9000B22E5B /* sudokuTests.m */; };
+		5B4BF1F919C25D0100B22E5B /* ZZYGGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4BF1F819C25D0100B22E5B /* ZZYGGrid.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		5B4BF1E919C25C9000B22E5B /* sudokuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sudokuTests-Info.plist"; sourceTree = "<group>"; };
 		5B4BF1EB19C25C9000B22E5B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B4BF1ED19C25C9000B22E5B /* sudokuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sudokuTests.m; sourceTree = "<group>"; };
+		5B4BF1F719C25D0100B22E5B /* ZZYGGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZYGGrid.h; sourceTree = "<group>"; };
+		5B4BF1F819C25D0100B22E5B /* ZZYGGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZYGGrid.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				5B4BF1D119C25C9000B22E5B /* ZZYGAppDelegate.h */,
+				5B4BF1F719C25D0100B22E5B /* ZZYGGrid.h */,
+				5B4BF1F819C25D0100B22E5B /* ZZYGGrid.m */,
 				5B4BF1D219C25C9000B22E5B /* ZZYGAppDelegate.m */,
 				5B4BF1D419C25C9000B22E5B /* Main.storyboard */,
 				5B4BF1D719C25C9000B22E5B /* ZZYGViewController.h */,
@@ -253,6 +258,7 @@
 				5B4BF1D319C25C9000B22E5B /* ZZYGAppDelegate.m in Sources */,
 				5B4BF1CF19C25C9000B22E5B /* main.m in Sources */,
 				5B4BF1D919C25C9000B22E5B /* ZZYGViewController.m in Sources */,
+				5B4BF1F919C25D0100B22E5B /* ZZYGGrid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
